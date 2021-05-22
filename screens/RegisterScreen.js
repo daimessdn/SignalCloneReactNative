@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, View, KeyboardAvoidingView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Button, Input, Image } from "react-native-elements";
+import { Button, Input, Text } from "react-native-elements";
 
-export default function LoginScreen({ navigation }) {
+export default function RegisterScreen({ navigation }) {
   // initial credential state
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
-  // function to change text once being inputted
+  // function to register
+  const register = () => {};
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <StatusBar style="light" />
 
-      <Image
-        source={{
-          uri: "https://blog.mozilla.org/internetcitizen/files/2018/08/signal-logo.png",
-        }}
-        style={{ width: 100, height: 100 }}
-      />
+      <Text h3 style={{ marginBottom: 50 }}>Create a signal account</Text>
 
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Email"
+          placeholder="Full Name"
           autoFocus
+          type="name"
+          value={name}
+          onChangeText={(value) => setName(value)}
+        />
+        <Input
+          placeholder="Email"
           type="email"
           value={email}
           onChangeText={(value) => setEmail(value)}
@@ -36,9 +40,14 @@ export default function LoginScreen({ navigation }) {
           value={password}
           onChangeText={(value) => setPassword(value)}
         />
+        <Input
+          placeholder="Profile image URL (optional)"
+          type="text"
+          value={imageUrl}
+          onChangeText={(value) => setImageUrl(value)}
+        />
 
-        <Button containerStyle={styles.button} title="Login" />
-        <Button onPress={() => navigation.navigate("Register")} containerStyle={styles.button} type="outline" title="Register" />
+        <Button raised containerStyle={styles.button} onPress={register} title="Register" />
 
         <View style={{ height: 100 }} />
       </View>
