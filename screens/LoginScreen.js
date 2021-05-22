@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, KeyboardAvoidingView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Button, Input, Image } from "react-native-elements";
+
+import { auth } from "../firebase";
 
 export default function LoginScreen({ navigation }) {
   // initial credential state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // function to change text once being inputted
+  // proceed auth state when login
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      console.log(authUser);
+      
+      if (authUser) {
+        navigation.replace("Home");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>

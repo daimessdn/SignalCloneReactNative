@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 // importing external components
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 // initial stack
 const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ export default function App() {
       <Stack.Navigator screenOptions={globalScreenOptions}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
