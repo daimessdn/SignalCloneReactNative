@@ -4,5 +4,5 @@ const firebaseConfig = {
   projectId: "my-signal-clone",
   storageBucket: "my-signal-clone.appspot.com",
   messagingSenderId: "621503344194",
-  appId: "1:621503344194:web:8603a429054115fc6807db"
+  appId: "1:621503344194:web:8603a429054115fc6807db",
 };
