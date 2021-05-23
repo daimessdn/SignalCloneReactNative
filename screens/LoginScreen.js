@@ -14,7 +14,7 @@ export default function LoginScreen({ navigation }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       console.log(authUser);
-      
+
       if (authUser) {
         navigation.replace("Home");
       }
@@ -22,6 +22,10 @@ export default function LoginScreen({ navigation }) {
 
     return unsubscribe;
   }, []);
+
+  const signIn = () => {
+    auth.signInWithEmailAndPassword(email, password).catch((error) => alert(error));
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -50,7 +54,7 @@ export default function LoginScreen({ navigation }) {
           onChangeText={(value) => setPassword(value)}
         />
 
-        <Button containerStyle={styles.button} title="Login" />
+        <Button onPress={signIn}containerStyle={styles.button} title="Login" />
         <Button onPress={() => navigation.navigate("Register")} containerStyle={styles.button} type="outline" title="Register" />
 
         <View style={{ height: 100 }} />

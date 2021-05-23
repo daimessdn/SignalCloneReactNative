@@ -1,14 +1,34 @@
 import React, { useState, useLayoutEffect } from "react";
-import { StyleSheet, View, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, View, KeyboardAvoidingView, ScrollView, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Button, Input, Text } from "react-native-elements";
+import { Button, Input, Text, Avatar } from "react-native-elements";
+
+import CustomListItem from "../components/CustomListItem";
 
 import { auth } from "../firebase";
 
-export default function RegisterScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Signal",
+      headerStyle: { backgroundColor: "#fff" },
+      headerTitleStyle: { color: "black" },
+      headerTintColor: "black",
+      headerLeft: () => (
+        <View style={{ marginLeft: 20 }}>
+          <TouchableOpacity>
+            <Avatar rounded source={{ uri: auth?.currentUser?.photoURL }} />
+          </TouchableOpacity>
+        </View>
+      )
+    });
+  }, []);
+
   return (
-    <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <Text>This is a homepage</Text>
+    <KeyboardAvoidingView behavior="padding">
+      <ScrollView>
+        <CustomListItem />
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
