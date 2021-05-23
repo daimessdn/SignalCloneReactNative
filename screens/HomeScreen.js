@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -13,15 +13,39 @@ import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
 
 import CustomListItem from "../components/CustomListItem";
 
-import { auth } from "../firebase";
+import { db, auth } from "../firebase";
 
 export default function HomeScreen({ navigation }) {
+  // initial empty chats state (array)
+  const [chats, setChats] = useState([]);
+
   // sign out user function
   const signOutUser = () => {
     auth.signOut().then(() => {
       navigation.replace("Login");
     });
   };
+
+  // function to enter the chat room
+  const enterChat = (id, chatName) => {
+    navigation.navigate("Chat", {
+      id: id,
+      chatName: chatName
+    });
+  };
+
+  useEffect(() => {
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) => {
+      setChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+
+    return unsubscribe;
+  });
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -63,7 +87,9 @@ export default function HomeScreen({ navigation }) {
   return (
     <KeyboardAvoidingView behavior="padding">
       <ScrollView>
-        <CustomListItem />
+        {chats.map(({ id, data: { chatName } }) => (
+          <CustomListItem key={id} id={id} chatName={chatName} enterChat={enterChat} />
+        ))}
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -71,10 +97,6 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: "white",
+    height: "100%",
   },
 });

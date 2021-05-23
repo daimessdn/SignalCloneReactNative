@@ -18,8 +18,14 @@ export default function AddChatScreen({ navigation }) {
 
   // function to create chat
   const createChat = async () => {
-    await db.collection("chats").add({ chatName: input }).then(() => { navigation.goBack(); }).catch((error) => alert(error));
-  }
+    await db
+      .collection("chats")
+      .add({ chatName: input })
+      .then(() => {
+        navigation.goBack();
+      })
+      .catch((error) => alert(error));
+  };
 
   return (
     <View style={styles.container}>
@@ -42,6 +48,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     padding: 30,
-    height: "100%"
+    height: "100%",
   },
 });
