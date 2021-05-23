@@ -15,8 +15,15 @@ export default function AddChatScreen({ navigation, route }) {
       headerTitleAlign: "left",
       headerTitle: () => (
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Avatar rounded source={{ uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png" }} />
-          <Text style={{ color: "white", marginLeft: 10, fontWeight: "700" }}>{route.params.chatName}</Text>
+          <Avatar
+            rounded
+            source={{
+              uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+            }}
+          />
+          <Text style={{ color: "white", marginLeft: 10, fontWeight: "700" }}>
+            {route.params.chatName}
+          </Text>
         </View>
       ),
       headerLeft: () => (
@@ -28,7 +35,14 @@ export default function AddChatScreen({ navigation, route }) {
         </TouchableOpacity>
       ),
       headerRight: () => (
-        <View style={{ flexDirection: "row", justifyContent: "space-between", width: 80, marginRight: 20 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: 80,
+            marginRight: 20,
+          }}
+        >
           <TouchableOpacity>
             <FontAwesome name="video-camera" size={24} color="white" />
           </TouchableOpacity>
@@ -37,9 +51,9 @@ export default function AddChatScreen({ navigation, route }) {
             <Ionicons name="call" size={24} color="white" />
           </TouchableOpacity>
         </View>
-      )
-    })
-  })
+      ),
+    });
+  });
 
   return (
     <View style={styles.container}>

@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
   const enterChat = (id, chatName) => {
     navigation.navigate("Chat", {
       id: id,
-      chatName: chatName
+      chatName: chatName,
     });
   };
 
@@ -88,7 +88,12 @@ export default function HomeScreen({ navigation }) {
     <KeyboardAvoidingView behavior="padding">
       <ScrollView>
         {chats.map(({ id, data: { chatName } }) => (
-          <CustomListItem key={id} id={id} chatName={chatName} enterChat={enterChat} />
+          <CustomListItem
+            key={id}
+            id={id}
+            chatName={chatName}
+            enterChat={enterChat}
+          />
         ))}
       </ScrollView>
     </KeyboardAvoidingView>
