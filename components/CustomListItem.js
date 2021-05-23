@@ -5,10 +5,10 @@ import { ListItem, Avatar } from "react-native-elements";
 export default function CustomListItem({ id, chatName, enterChat }) {
   return (
     <ListItem>
-      <Avatar 
+      <Avatar
         rounded
         source={{
-          uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
+          uri: "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
         }}
       />
 
@@ -25,6 +25,4 @@ export default function CustomListItem({ id, chatName, enterChat }) {
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

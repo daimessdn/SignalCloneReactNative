@@ -24,7 +24,9 @@ export default function LoginScreen({ navigation }) {
   }, []);
 
   const signIn = () => {
-    auth.signInWithEmailAndPassword(email, password).catch((error) => alert(error));
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error));
   };
 
   return (
@@ -54,8 +56,13 @@ export default function LoginScreen({ navigation }) {
           onChangeText={(value) => setPassword(value)}
         />
 
-        <Button onPress={signIn}containerStyle={styles.button} title="Login" />
-        <Button onPress={() => navigation.navigate("Register")} containerStyle={styles.button} type="outline" title="Register" />
+        <Button onPress={signIn} containerStyle={styles.button} title="Login" />
+        <Button
+          onPress={() => navigation.navigate("Register")}
+          containerStyle={styles.button}
+          type="outline"
+          title="Register"
+        />
 
         <View style={{ height: 100 }} />
       </View>
@@ -74,10 +81,10 @@ const styles = StyleSheet.create({
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
-    width: 300
+    width: 300,
   },
   button: {
     width: 200,
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });

@@ -14,27 +14,32 @@ export default function RegisterScreen({ navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitle: "Back to Login"
-    })
+      headerBackTitle: "Back to Login",
+    });
   }, [navigation]);
 
   // function to register
   const register = () => {
-    auth.createUserWithEmailAndPassword(email, password)
-    .then((authUser) => {
-      authUser.user.updateProfile({
-        displayName: name,
-        photoURL: imageUrl || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png"
-      });
-    })
-    .catch((error) => alert(error.message));
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        authUser.user.updateProfile({
+          displayName: name,
+          photoURL:
+            imageUrl ||
+            "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+        });
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <StatusBar style="light" />
 
-      <Text h3 style={{ marginBottom: 50 }}>Create a signal account</Text>
+      <Text h3 style={{ marginBottom: 50 }}>
+        Create a signal account
+      </Text>
 
       <View style={styles.inputContainer}>
         <Input
@@ -64,7 +69,12 @@ export default function RegisterScreen({ navigation }) {
           onChangeText={(value) => setImageUrl(value)}
         />
 
-        <Button raised containerStyle={styles.button} onPress={register} title="Register" />
+        <Button
+          raised
+          containerStyle={styles.button}
+          onPress={register}
+          title="Register"
+        />
 
         <View style={{ height: 100 }} />
       </View>
@@ -83,10 +93,10 @@ const styles = StyleSheet.create({
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
-    width: 300
+    width: 300,
   },
   button: {
     width: 200,
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
