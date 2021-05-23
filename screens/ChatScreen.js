@@ -72,7 +72,7 @@ export default function AddChatScreen({ navigation, route }) {
         </View>
       ),
     });
-  });
+  }, [navigation, messages]);
 
   const sendMessage = () => {
     Keyboard.dismiss();
@@ -85,7 +85,7 @@ export default function AddChatScreen({ navigation, route }) {
       photoURL: auth.currentUser.photoURL,
     });
 
-    setinput("");
+    setInput("");
   };
 
   useLayoutEffect(() => {
@@ -166,6 +166,7 @@ export default function AddChatScreen({ navigation, route }) {
               <TextInput
                 placeholder="Type to chat"
                 style={styles.textInput}
+                value={input}
                 onChangeText={(value) => setInput(value)}
                 onSubmitEditing={sendMessage}
               />
@@ -197,18 +198,16 @@ const styles = StyleSheet.create({
   },
   sender: {
     padding: 15,
-    backgroundColor: "#ececec",
+    backgroundColor: "#2b68e6",
     alignSelf: "flex-start",
     borderRadius: 20,
-    marginRight: 15,
-    marginBottom: 20,
+    margin: 15,
     maxWidth: "80%",
     position: "relative",
   },
   senderText: {
-    left: 10,
+    color: "#fff",
     fontWeight: "500",
-    marginLeft: 10,
     marginBottom: 15,
   },
   receiverText: {
@@ -218,7 +217,7 @@ const styles = StyleSheet.create({
   },
   senderName: {
     left: 10,
-    paddingRight: 10,
+    paddingLeft: 10,
     fontSize: 10,
     color: "white",
   },
