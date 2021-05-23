@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import { Button, Input, Text, Avatar } from "react-native-elements";
 
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
